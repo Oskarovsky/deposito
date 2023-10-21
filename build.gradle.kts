@@ -35,17 +35,25 @@ repositories {
     mavenCentral()
 }
 
+val kafkaApiVersion = "3.3.1"
+
 dependencies {
     implementation(platform("org.springframework.boot:spring-boot-dependencies:3.1.5"))
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.5")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-hocon:1.5.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-RC")
+
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
+    compileOnly("io.projectreactor:reactor-bus:2.0.8.RELEASE")
+    implementation("org.apache.kafka:kafka-clients:$kafkaApiVersion")
+    implementation("org.apache.kafka:kafka-streams:$kafkaApiVersion")
+    implementation("org.springframework.kafka:spring-kafka:3.0.12")
+
 
     implementation("org.postgresql:postgresql:42.2.27")
     implementation("com.zaxxer:HikariCP:2.7.8")
@@ -54,6 +62,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(mapOf("group" to "org.junit.vintage", "module" to "junit-vintage-engine"))
     }
+    testImplementation("org.apache.kafka:kafka-streams-test-utils:$kafkaApiVersion")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(kotlin("test"))
 }
