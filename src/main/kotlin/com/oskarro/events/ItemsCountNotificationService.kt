@@ -1,4 +1,3 @@
 package com.oskarro.events
 
-interface ItemsCountNotificationService: NotificationService<ItemsCountNotification> {
-}
+interface ItemsCountNotificationService: NotificationService<ItemsCountNotification> {}

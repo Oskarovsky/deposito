@@ -2,6 +2,7 @@ package com.oskarro.controller
 
 import com.oskarro.model.ArtistDto
 import com.oskarro.model.Item
+import com.oskarro.service.FileProcessorService
 import com.oskarro.service.ItemService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
@@ -9,7 +10,8 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping(value = ["/api/v1/item"])
 class ItemController(
-    val itemService: ItemService
+    val itemService: ItemService,
+    val fileProcessorService: FileProcessorService
 ) {
 
     @GetMapping(
@@ -27,7 +29,7 @@ class ItemController(
     }
 
     @PutMapping(
-        value = ["/load"],
+        value = ["/all"],
         produces = [MediaType.APPLICATION_JSON_VALUE],
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
@@ -52,5 +54,15 @@ class ItemController(
     fun deleteAllTrack() {
         println("Removing all items")
         itemService.deleteAll()
+    }
+
+    @PutMapping(
+        value = ["/load"],
+        produces = [MediaType.APPLICATION_JSON_VALUE],
+        consumes = [MediaType.APPLICATION_JSON_VALUE]
+    )
+    fun loadFiles(@RequestBody path: String) {
+        println("Loading files from following path: $path")
+        fileProcessorService.loadFiles(path)
     }
 }

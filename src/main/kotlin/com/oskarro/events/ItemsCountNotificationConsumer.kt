@@ -8,9 +8,8 @@ class ItemsCountNotificationConsumer(
 ): NotificationConsumer<ItemsCountNotification> {
 
     override fun accept(e: ItemsCountNotification) {
-        val data = e
-        data.let {
-            service.notify(data)
+        e.let {
+            service.notify(e)
         }
     }
 }

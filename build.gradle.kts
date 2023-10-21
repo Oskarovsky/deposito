@@ -42,18 +42,19 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.kafka:spring-kafka:3.0.12")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.5")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-hocon:1.5.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-RC")
 
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
     implementation("io.projectreactor:reactor-core:3.5.11")
     implementation("org.apache.kafka:kafka-clients:$kafkaApiVersion")
     implementation("org.apache.kafka:kafka-streams:$kafkaApiVersion")
-    implementation("org.springframework.kafka:spring-kafka:3.0.12")
 
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
+    implementation("com.mpatric:mp3agic:0.9.1")
 
     implementation("org.postgresql:postgresql:42.2.27")
     implementation("com.zaxxer:HikariCP:2.7.8")
