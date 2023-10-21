@@ -38,10 +38,14 @@ repositories {
 dependencies {
     implementation(platform("org.springframework.boot:spring-boot-dependencies:3.1.5"))
     implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+    implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.5")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-hocon:1.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-RC")
 
     implementation("org.postgresql:postgresql:42.2.27")
     implementation("com.zaxxer:HikariCP:2.7.8")
@@ -69,4 +73,17 @@ tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions {
         jvmTarget = "17"
     }
+}
+
+tasks.register<JavaExec>("migrate") {
+    group = "Execution"
+    description = "Migrates the database to the latest version"
+    classpath = sourceSets.getByName("main").runtimeClasspath
+    mainClass.set("com.oskarro.migrations.RunMigrations")
+
+    val user = System.getenv("POSTGRES_ADMIN_USER")
+        ?: "postgres"
+    val pass = System.getenv("POSTGRES_ADMIN_PASSWORD")
+        ?: "postgres"
+    args = listOf(user, pass)
 }
