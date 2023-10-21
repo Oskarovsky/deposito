@@ -1,6 +1,5 @@
 package com.oskarro.controller
 
-import com.oskarro.model.Track
 import com.oskarro.model.TrackDto
 import com.oskarro.service.TrackService
 import org.springframework.http.MediaType
@@ -21,7 +20,7 @@ class TrackController(
         produces = [MediaType.APPLICATION_JSON_VALUE],
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun saveTrack(@RequestBody track: Track): Track {
+    fun saveTrack(@RequestBody track: TrackDto): TrackDto {
         println("Saving track: $track")
         return trackService.addTrack(track)
     }
@@ -31,7 +30,7 @@ class TrackController(
         produces = [MediaType.APPLICATION_JSON_VALUE],
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun updateTrack(@RequestBody track: Track): Track {
+    fun updateTrack(@RequestBody track: TrackDto): TrackDto {
         println("Updating track: $track")
         track.title += " [ updated ]"
         return trackService.updateTrack(track)

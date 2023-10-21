@@ -1,6 +1,7 @@
 package com.oskarro.service
 
 import com.oskarro.model.Artist
+import com.oskarro.model.ArtistDto
 import com.oskarro.model.Track
 import com.oskarro.repository.ArtistRepository
 import com.oskarro.repository.TrackRepository
@@ -12,17 +13,26 @@ class ArtistService(
     val artistRepository: ArtistRepository
 ) {
 
-    fun getTracks(): Iterable<Artist> = artistRepository.findAll()
+    fun getArtists(): Iterable<ArtistDto> = artistRepository.findAll().map { ArtistDto(it) }
 
-    fun addTrack(artist: Artist): Artist {
-        return artistRepository.save(artist)
+    fun addArtist(dto: ArtistDto): ArtistDto {
+        return ArtistDto(
+            artistRepository.save(
+                Artist(
+                    id = 0,
+                    name = dto.name
+                )
+            )
+        )
     }
 
-    fun updateTrack(artist: Artist): Artist {
-        return artistRepository.save(artist)
+    fun updateArtist(dto: ArtistDto): ArtistDto {
+        val artist: Artist = artistRepository.findById(dto.id).get()
+        artist.name = dto.name
+        return ArtistDto(artistRepository.save(artist))
     }
 
-    fun deleteTrack(artistId: Int) {
+    fun deleteArtist(artistId: Int) {
         artistRepository.deleteById(artistId)
     }
 }

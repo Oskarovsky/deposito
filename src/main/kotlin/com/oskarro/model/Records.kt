@@ -8,6 +8,17 @@ import org.hibernate.annotations.UpdateTimestamp
 import java.util.*
 import kotlin.collections.HashSet
 
+@Entity(name = "Item")
+@Table(name = "Item")
+data class Item(
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Int,
+
+    var content: String?
+)
+
 @Entity(name = "Artist")
 @Table(name = "artist")
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -38,6 +49,7 @@ data class Artist(
 @Table(name = "track")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class Track(
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int,

@@ -6,6 +6,8 @@ data class TrackDto(
     var title: String?,
     var version: String?,
     var length: Int?,
+    var tempo: Double?,
+    var size: Double?,
     var genre: Genre?
 ) {
     var id: Int = 0
@@ -13,10 +15,12 @@ data class TrackDto(
     var modified: Date = Date()
 
     constructor(track: Track): this(
-        track.title,
-        track.version,
-        track.length,
-        track.genre
+        title = track.title,
+        version = track.version,
+        length = track.length,
+        tempo = track.tempo,
+        size = track.size,
+        genre = track.genre
     ) {
         id = track.id
         created = track.created
@@ -32,7 +36,7 @@ data class ArtistDto(
     var modified: Date = Date()
 
     constructor(artist: Artist): this(
-        artist.name
+        name = artist.name
     ) {
         id = artist.id
         created = artist.created

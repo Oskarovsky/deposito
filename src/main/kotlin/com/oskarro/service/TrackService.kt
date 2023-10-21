@@ -13,12 +13,31 @@ class TrackService(
 
     fun getTracks(): Iterable<TrackDto> = trackRepository.findAll().map { TrackDto(it) }
 
-    fun addTrack(track: Track): Track {
-        return trackRepository.save(track)
+    fun addTrack(dto: TrackDto): TrackDto {
+        return TrackDto(
+            trackRepository.save(
+                Track(
+                    id = 0,
+                    title = dto.title,
+                    version = dto.version,
+                    length = dto.length,
+                    tempo = dto.tempo,
+                    genre = dto.genre,
+                    size = dto.size
+                )
+            )
+        )
     }
 
-    fun updateTrack(track: Track): Track {
-        return trackRepository.save(track)
+    fun updateTrack(dto: TrackDto): TrackDto {
+        val track: Track = trackRepository.findById(dto.id).get()
+        track.title = dto.title
+        track.version = dto.version
+        track.genre = dto.genre
+        track.length = dto.length
+        track.tempo = dto.tempo
+        track.size = dto.size
+        return TrackDto(trackRepository.save(track))
     }
 
     fun deleteTrack(trackId: Int) {
