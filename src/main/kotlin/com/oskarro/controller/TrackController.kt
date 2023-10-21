@@ -41,7 +41,7 @@ class TrackController(
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
     fun deleteTrack(@PathVariable id: Int) {
-        println("Removing: $id")
+        println("Removing track with id: $id")
         trackService.deleteTrack(id)
     }
 

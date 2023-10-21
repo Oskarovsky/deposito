@@ -49,7 +49,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-RC")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
-    compileOnly("io.projectreactor:reactor-bus:2.0.8.RELEASE")
+    implementation("io.projectreactor:reactor-core:3.5.11")
     implementation("org.apache.kafka:kafka-clients:$kafkaApiVersion")
     implementation("org.apache.kafka:kafka-streams:$kafkaApiVersion")
     implementation("org.springframework.kafka:spring-kafka:3.0.12")
