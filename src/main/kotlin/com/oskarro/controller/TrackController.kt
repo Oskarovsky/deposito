@@ -1,6 +1,7 @@
 package com.oskarro.controller
 
 import com.oskarro.model.Track
+import com.oskarro.model.TrackDto
 import com.oskarro.service.TrackService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
@@ -14,7 +15,7 @@ class TrackController(
     @GetMapping(
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun getTracks(): Iterable<Track> = trackService.getTracks()
+    fun getTracks(): Iterable<TrackDto> = trackService.getTracks()
 
     @PutMapping(
         produces = [MediaType.APPLICATION_JSON_VALUE],

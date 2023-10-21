@@ -1,6 +1,7 @@
 package com.oskarro.service
 
 import com.oskarro.model.Track
+import com.oskarro.model.TrackDto
 import com.oskarro.repository.TrackRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -10,7 +11,7 @@ class TrackService(
     val trackRepository: TrackRepository
 ) {
 
-    fun getTracks(): Iterable<Track> = trackRepository.findAll()
+    fun getTracks(): Iterable<TrackDto> = trackRepository.findAll().map { TrackDto(it) }
 
     fun addTrack(track: Track): Track {
         return trackRepository.save(track)

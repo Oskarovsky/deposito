@@ -1,0 +1,5 @@
+ALTER TABLE track ADD created TIMESTAMP;
+ALTER TABLE track ADD modified TIMESTAMP;
+
+ALTER TABLE artist ADD created TIMESTAMP;
+ALTER TABLE artist ADD modified TIMESTAMP;
