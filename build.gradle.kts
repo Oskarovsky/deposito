@@ -55,6 +55,7 @@ dependencies {
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
     implementation("com.mpatric:mp3agic:0.9.1")
+    implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
 
     implementation("org.postgresql:postgresql:42.2.27")
     implementation("com.zaxxer:HikariCP:2.7.8")

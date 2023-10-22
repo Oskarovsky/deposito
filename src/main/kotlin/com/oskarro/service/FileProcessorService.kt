@@ -23,7 +23,6 @@ class FileProcessorService {
                 .filter { it.name.endsWith(".mp3") }
                 .forEach {
                     val trackDto: TrackDto = convertFileInformation(Mp3File(it))
-                    println(trackDto)
                 }
         }
     }
@@ -54,6 +53,7 @@ class FileProcessorService {
                 )
             }
             else -> {
+                unfoldFilename(file)
                 trackDto = TrackDto(
                     title = "",
                     version = "",
@@ -65,5 +65,16 @@ class FileProcessorService {
             }
         }
         return trackDto
+    }
+
+    private fun unfoldFilename(file: Mp3File) {
+        val fileName: String = file.filename.substringAfterLast("/")
+        val artistPart = fileName.substringBefore(" - ")
+        val titlePart = fileName.substringAfter(" - ").substringBefore("(")
+        val versionPart = fileName.substringAfterLast("(").substringBeforeLast(")")
+        println("Unfolded artist part: $artistPart")
+        println("Unfolded title part: $titlePart")
+        println("Unfolded version part: $versionPart")
+        println("===============")
     }
 }
