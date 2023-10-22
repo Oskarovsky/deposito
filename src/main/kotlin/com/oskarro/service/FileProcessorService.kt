@@ -14,6 +14,8 @@ import kotlin.io.path.name
 @Service
 class FileProcessorService {
 
+//    https://github.com/mpatric/mp3agic
+
     fun loadFiles(path: String) {
         Files.walk(Paths.get(path)).use { paths ->
             paths
