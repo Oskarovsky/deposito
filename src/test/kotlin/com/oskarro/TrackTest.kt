@@ -4,7 +4,6 @@ import com.oskarro.model.Genre
 import com.oskarro.model.TrackDto
 import com.oskarro.service.TrackService
 import org.junit.jupiter.api.*
-import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -39,6 +38,7 @@ class TrackTest {
     @Test
     fun insert() {
         tracks.forEach {
+            println("Inserting track: $it")
             val result = service.addTrack(it)
             assertNotNull(result)
             assertNotNull(result.id)
@@ -53,7 +53,11 @@ class TrackTest {
 
     @Test
     fun select() {
-
+        val result = service.getTracks()
+        result.forEach {
+            assertNotNull(it)
+            assertNotNull(it.id)
+        }
     }
 
     @Test
