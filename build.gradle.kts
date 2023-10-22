@@ -59,6 +59,7 @@ dependencies {
     implementation("org.postgresql:postgresql:42.2.27")
     implementation("com.zaxxer:HikariCP:2.7.8")
     implementation("org.flywaydb:flyway-core:9.17.0")
+    implementation("com.h2database:h2")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(mapOf("group" to "org.junit.vintage", "module" to "junit-vintage-engine"))
